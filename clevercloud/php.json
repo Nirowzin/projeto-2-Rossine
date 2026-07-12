@@ -1,5 +1,5 @@
 {
     "deploy": {
-      "command": "cd backend && php artisan key:generate && php artisan jwt:secret && php artisan migrate --force --seed"
+      "command": "cd backend && php artisan migrate --force --seed"
     }
 }
