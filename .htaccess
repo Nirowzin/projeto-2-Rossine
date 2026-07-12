@@ -1,17 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # CORS no nível do Apache para chamadas da Vercel
-    <IfModule mod_headers.c>
-        Header always set Access-Control-Allow-Origin "*"
-        Header always set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-        Header always set Access-Control-Allow-Headers "Origin, Content-Type, Accept, Authorization, X-Requested-With, x-xsrf-token"
-    </IfModule>
-
-    # Responde preflight OPTIONS sem bloquear no Apache
-    RewriteCond %{REQUEST_METHOD} OPTIONS
-    RewriteRule ^(.*)$ $1 [R=200,L]
-
     # Force all requests to Laravel public dir inside backend/
     RewriteRule ^$ backend/public/ [L]
     RewriteRule (.*) backend/public/$1 [L]
