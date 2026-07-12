@@ -1,0 +1,6 @@
+# Root level ignores
+.vscode/
+
+# Ensure backend .env is never tracked
+backend/.env
+backend/.env.backup
