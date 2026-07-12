@@ -22,4 +22,14 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+    
+    # Resolvendo o Bloqueio de CORS na Clever Cloud:
+    # A Clever Cloud costuma bloquear OPTIONS no Apache antes de chegar no Laravel
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+    Header set Access-Control-Allow-Headers "Origin, Content-Type, Accept, Authorization, X-Requested-With, x-xsrf-token"
+    
+    # Intercepta as requisições OPTIONS e retorna 200 OK com os headers
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
 </IfModule>
