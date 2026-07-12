@@ -17,7 +17,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    // Prefer PostgreSQL addon in Clever Cloud when available.
+    'default' => env('POSTGRESQL_ADDON_URI') ? 'pgsql' : env('DB_CONNECTION', 'sqlite'),
 
     /*
     |--------------------------------------------------------------------------
